@@ -7,3 +7,12 @@ Body {
     /* background-image: linear-gradient(red, yellow, blue); */
     font-family: Rochester;
 }
+
+.userIcons {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.icons {
+    width: 20px;
+}

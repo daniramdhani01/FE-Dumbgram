@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom'
-import { Col, Row } from 'react-bootstrap'
+import { Col, Row, Button } from 'react-bootstrap'
 //icons
 import edit from '../assets/icons/edit.svg'
 import home from '../assets/icons/home.svg'
 import compass from '../assets/icons/compass.svg'
-import logout from '../assets/icons/logout.svg'
+import logout from '../assets/icons/logout.svg' 
 //image
-import lisa from '../assets/lisa.png'
+import zayn from '../assets/zayn.png'
 
-function Profile() {
+function ProfilePeopleComponent(){
     return (
         <>
             <div className='text-center p-4 sticky-top'>
@@ -16,10 +16,13 @@ function Profile() {
                 <div className="d-flex justify-content-end">
                     <img src={edit} alt="" />
                 </div>
-                <img src={lisa} alt="" className='' style={{ borderRadius: '1000px', width:125 }} />
-                <h2>Lisa</h2>
-                <div className="">@lalalisa_m</div>
-                <Row>
+                <img src={zayn} alt="" style={{ borderRadius: '1000px', width:125 }} />
+                <h2>Zayn Malik</h2>
+                <div className="mb-4">@zayn</div>
+                <Button>Message</Button>{' '}
+                <Button variant='secondary'>Unfollow</Button>
+
+                <Row className='mt-4'>
                     <Col>
                         Post
                     </Col>
@@ -41,7 +44,9 @@ function Profile() {
                         1
                     </Col>
                 </Row>
-                Rapper in Black Pink, Brand Ambasador Penshoppe
+               <p className='text-start my-3'>Nobody is Listening Out Now! 
+                   www.inzayn.com
+                   </p> 
                 <hr />
                 <Row className='text-start mb-3'>
                     <Col>
@@ -71,4 +76,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default ProfilePeopleComponent

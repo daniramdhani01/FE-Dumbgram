@@ -1,18 +1,22 @@
 import { useState } from 'react'
 import { Button, Modal, InputGroup, FormControl } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
+  const navigate = useNavigate()
+  const handleClick = () => {
+    navigate('/feed')
+  }
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>Login</Button>
+      {/* <Button variant="primary" onClick={handleShow}>Login</Button> */}
 
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header>
+        <Modal.Header >
           <Modal.Title><span className='text-dark'>Login</span></Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -30,7 +34,7 @@ function Login() {
               type='password'
             />
           </InputGroup>
-          <Button variant="primary" onClick={handleClose} className='w-100 mb-3'>
+          <Button onClick={handleClick} variant="primary" className='w-100 mb-3'>
             Login
           </Button>
           <div className="text-dark d-flex justify-content-center">Don't have an account ? Klik Here</div>

@@ -17,12 +17,12 @@ import holiday from '../assets/holiday.png'
 import zayn from '../assets/zayn.png'
 import city from '../assets/city.png'
 
-function FeedDetail() {
+function FeedPeople() {
     return (
         <>
             <div className="sticky-top p-4 mb-3" style={{ backgroundColor: 'black' }}>
                 <Header />
-                <h2>Feed</h2>
+                <h2>Zayn, Feed</h2>
             </div>
             <div className="p-4 d-flex flex-wrap">
                 <Col className="col-4 px-2">
@@ -123,4 +123,4 @@ function FeedDetail() {
     )
 }
 
-export default FeedDetail
+export default FeedPeople

@@ -1,9 +1,9 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react'
 import { Button, Modal, InputGroup, FormControl } from 'react-bootstrap'
 
 function Register() {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -45,7 +45,7 @@ function Register() {
           <Button variant="primary" onClick={handleClose} className='w-100 mb-3'>
             Register
           </Button>
-          <div className="text-dark d-flex justify-content-center">Already have an account ?  Klik Here</div>
+          <div className="text-dark d-flex justify-content-center">Already have an account ?  Klik <Link to='/feed' style={{textDecoration:'none', color:'black'}}>Here</Link></div>
         </Modal.Body>
       </Modal>
     </>

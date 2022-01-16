@@ -1,10 +1,10 @@
 import { Container } from "react-bootstrap"
 import Profile from "../components/Profile"
-import FeedDetail from "../components/FeedDetail"
+import ExploreDetail from "../components/ExploreDetail"
 
 
 
-function Feed() {
+function Explore() {
     return (
         <Container fluid="xxl" className="d-flex">
             <div className="col-3">
@@ -14,10 +14,10 @@ function Feed() {
                 <hr className="my-0 p-0" style={{ width: 1, height: '100%' }} />
             </div>
             <div className="col-9">
-                <FeedDetail />
+                <ExploreDetail />
             </div>
         </Container>
     )
 }
 
-export default Feed
+export default Explore

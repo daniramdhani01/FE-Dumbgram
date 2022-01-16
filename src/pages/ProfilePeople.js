@@ -1,23 +1,21 @@
 import { Container } from "react-bootstrap"
-import Profile from "../components/Profile"
-import FeedDetail from "../components/FeedDetail"
+import FeedPeople from "../components/FeedPeople"
+import ProfilePeopleComponent from "../components/ProfilePeopleComponent"
 
-
-
-function Feed() {
+function ProfilePeople() {
     return (
         <Container fluid="xxl" className="d-flex">
             <div className="col-3">
-                <Profile />
+                <ProfilePeopleComponent />
             </div>
             <div className="d-flex justify-content-center">
                 <hr className="my-0 p-0" style={{ width: 1, height: '100%' }} />
             </div>
             <div className="col-9">
-                <FeedDetail />
+                <FeedPeople />
             </div>
         </Container>
     )
 }
 
-export default Feed
+export default ProfilePeople
