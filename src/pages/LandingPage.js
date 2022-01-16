@@ -1,6 +1,7 @@
 import { Container, Button, Row, Col, Modal } from 'react-bootstrap'
 import '../styles/style.css'
 import Register from '../components/Register'
+import Login from '../components/Login'
 
 // image
 import Rectangle3 from '../assets/Rectangle3.png'
@@ -20,7 +21,7 @@ function LandingPage() {
                 <h1 className='title-dg'>DumbGram</h1>
                 <h3 style={{ fontFamily: "Arial" }}>Share your best photo or video</h3>
                 <h5>Join now, share your creations with another people and enjoy other creations.</h5>
-                <Button>Login</Button>{' '}
+                <Login/>{' '}
                 <Register />
             </div>
             <div className="rightSide col-7 d-flex">
