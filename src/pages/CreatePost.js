@@ -1,10 +1,10 @@
 import { Container } from "react-bootstrap"
 import Profile from "../components/Profile"
-import FeedDetail from "../components/FeedDetail"
+import CreatePostComponen from "../components/CreatePostComponent"
 
 
 
-function Feed() {
+function CreatePost() {
     return (
         <Container fluid="xxl" className="d-flex">
             <div className="col-3">
@@ -14,10 +14,10 @@ function Feed() {
                 <hr className="my-0 p-0" style={{ width: 1, height: '100%', minHeight:'100vh' }} />
             </div>
             <div className="col-9">
-                <FeedDetail />
+                <CreatePostComponen />
             </div>
         </Container>
     )
 }
 
-export default Feed
+export default CreatePost

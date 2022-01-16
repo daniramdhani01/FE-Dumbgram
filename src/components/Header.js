@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Col, Button, InputGroup, FormControl } from 'react-bootstrap'
 
 //icons
@@ -24,10 +25,9 @@ function Header() {
             <Col className='d-flex justify-content-end'>
                 <img src={bell} alt="" className='me-4' />
                 <img src={paperPlane} alt="" className='me-4' />
-
-                <Button variant='primary'>
-                    <div className="btn btn-secondary"><img src={plus} alt="" /></div>{' '}Create Post
-                </Button>
+                <Link to='/CreatePost' >
+                    <div className="btn btn-secondary"><img src={plus} alt="" />{' '}Create Post</div>
+                </Link>
             </Col>
         </div>
     )

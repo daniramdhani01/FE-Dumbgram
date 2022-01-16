@@ -9,7 +9,7 @@ function ProfilePeople() {
                 <ProfilePeopleComponent />
             </div>
             <div className="d-flex justify-content-center">
-                <hr className="my-0 p-0" style={{ width: 1, height: '100%' }} />
+                <hr className="my-0 p-0" style={{ width: 1, height: '100%', minHeight:'100vh' }} />
             </div>
             <div className="col-9">
                 <FeedPeople />
