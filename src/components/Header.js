@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'
 import { Col, Button, InputGroup, FormControl } from 'react-bootstrap'
 
@@ -8,25 +10,32 @@ import paperPlane from '../assets/icons/paper-plane.svg'
 import plus from '../assets/icons/plus.svg'
 
 function Header() {
+    const notify = () => toast("Wow so easy!");
     return (
-        <div className='d-flex mb-3'>
+        <div className='d-flex mb-4'>
             <Col>
-                <InputGroup className="">
-                    <InputGroup.Text id="search" className='bg-dark'>
+                <InputGroup>
+                    <InputGroup.Text id="search" className='bg-dark btn btn-outline-dark d-flex justify-content-center align-items-center'>
                         <img src={loupe} alt="" />
                     </InputGroup.Text>
                     <FormControl
+                        className="bg-dark btn-outline-dark"
                         placeholder="Search"
                         aria-label="Search"
                         aria-describedby="search"
                     />
                 </InputGroup>
             </Col>
-            <Col className='d-flex justify-content-end'>
-                <img src={bell} alt="" className='me-4' />
-                <img src={paperPlane} alt="" className='me-4' />
-                <Link to='/CreatePost' >
-                    <div className="btn btn-secondary"><img src={plus} alt="" />{' '}Create Post</div>
+            <Col className='d-flex justify-content-end align-items-center'>
+                <Button onClick={notify}>
+                    <img src={bell} alt="" className='me-4' />
+                </Button>
+                <Link to='/message'>
+                    <img src={paperPlane} alt="" className='me-4' />
+                </Link>
+                <Link to='/create-post' className='btn btn-rainbow text-white'>
+                    <img src={plus} alt="" className='p-2 rounded' style={{ background: '#00000040' }} />{' '}
+                    Create Post
                 </Link>
             </Col>
         </div>

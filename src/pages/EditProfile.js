@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap"
 import Profile from "../components/Profile"
 import FeedDetail from "../components/FeedDetail"
+import EditProfileComponent from "../components/EditProfileComponent"
 
 function Feed() {
     return (
@@ -13,7 +14,7 @@ function Feed() {
                 <hr style={{ width: 1, height: '100vh', minHeight: '100%', margin: 0 }} />
             </div>
             <div className="col-9">
-                <FeedDetail />
+                <EditProfileComponent />
             </div>
         </Container >
     )

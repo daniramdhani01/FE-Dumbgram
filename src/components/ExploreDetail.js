@@ -1,5 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Header from './Header'
+import Masonry from 'react-masonry-css'
 
 //icons
 import heart from '../assets/icons/heart.svg'
@@ -20,25 +21,20 @@ import city from '../assets/city.png'
 function ExploreDetail() {
     return (
         <>
-            <div className="sticky-top p-4 mb-3" style={{ backgroundColor: 'black' }}>
+            <div className="p-4 sticky-top bg-black pb-3">
                 <Header />
                 <h2>Explore</h2>
             </div>
-            <div className="p-4 d-flex flex-wrap">
-                <Row className="col-4 px-2">
+            <div className="px-4">
+                <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
+                    {/* array of JSX items */}
                     <img src={waterFall} alt="" className='rounded w-100 mb-2' />
-                    <img src={city} alt="" className='rounded w-100 mb-2' />
-                </Row>
-
-                <Row className="col-4 px-2">
                     <img src={holiday} alt="" className='rounded w-100 mb-2' />
-                    <img src={kelapa} alt="" className='rounded w-100 mb-2' />
-                </Row>
-
-                <Row className="col-4 px-2">
                     <img src={moto} alt="" className='rounded w-100 mb-2' />
+                    <img src={city} alt="" className='rounded w-100 mb-2' />
+                    <img src={kelapa} alt="" className='rounded w-100 mb-2' />
                     <img src={man} alt="" className='rounded w-100 mb-2' />
-                </Row>
+                </Masonry>
             </div>
         </>
     )

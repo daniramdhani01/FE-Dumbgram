@@ -10,8 +10,8 @@ function Explore() {
             <div className="col-3">
                 <Profile />
             </div>
-            <div className="d-flex justify-content-center">
-                <hr className="my-0 p-0" style={{ width: 1, height: '100%', minHeight:'100vh' }} />
+            <div>
+            <hr style={{ width: 1, height: '100vh', minHeight: '100%', margin: 0 }} />
             </div>
             <div className="col-9">
                 <ExploreDetail />

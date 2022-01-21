@@ -22,7 +22,7 @@ function CreatePostComponen() {
         <>
             <div className="p-4 sticky-top bg-black pb-3">
                 <Header />
-                <h2>Create Post</h2>
+                <h2>Edit Profile</h2>
             </div>
 
             <div className="p-4">
@@ -31,9 +31,21 @@ function CreatePostComponen() {
                     <Form.Group>
                         <Form.Control 
                         className="my-3 bg-dark text-white"
+                        as="input"
+                        placeholder='Name'/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control 
+                        className="my-3 bg-dark text-white"
+                        as="input"
+                        placeholder='Username'/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control 
+                        className="my-3 bg-dark text-white"
                         as="textarea"
                         rows={6} 
-                        placeholder='Caption'/>
+                        placeholder='Bio'/>
                     </Form.Group>
                 </Form>
                 <div className='d-flex justify-content-end mt-5'>

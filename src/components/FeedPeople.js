@@ -1,5 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Header from './Header'
+import Masonry from 'react-masonry-css'
 
 //icons
 import heart from '../assets/icons/heart.svg'
@@ -20,104 +21,112 @@ import city from '../assets/city.png'
 function FeedPeople() {
     return (
         <>
-            <div className="sticky-top p-4 mb-3" style={{ backgroundColor: 'black' }}>
+            <div className="p-4 sticky-top bg-black pb-3">
                 <Header />
                 <h2>Zayn, Feed</h2>
             </div>
-            <div className="p-4 d-flex flex-wrap">
-                <Col className="col-4 px-2">
-                    <img src={waterFall} alt="" className='rounded w-100 mb-2' />
-                    <div className="d-flex align-items-center mb-2">
-                        <img src={zayn} alt="" className='userIcons' />
-                        zayn
-                        <div className="w-100 text-end">
-                            <img src={heart} alt="" className='icons me-2' />
-                            <img src={speechBubble} alt="" className='icons me-2' />
-                            <img src={paperPlane} alt="" className='icons' />
-                        </div>
-                    </div>
-                    <div className='text-end'>
-                        126.100 Like
-                    </div>
-                </Col>
 
-                <Col className="col-4 px-2">
-                    <img src={holiday} alt="" className='rounded w-100 mb-2' />
-                    <div className="d-flex align-items-center mb-2">
-                        <img src={zayn} alt="" className='userIcons' />
-                        zayn
-                        <div className="w-100 text-end">
-                            <img src={heart} alt="" className='icons me-2' />
-                            <img src={speechBubble} alt="" className='icons me-2' />
-                            <img src={paperPlane} alt="" className='icons' />
-                        </div>
-                    </div>
-                    <div className='text-end'>
-                        126.100 Like
-                    </div>
-                </Col>
+            <div className="px-4">
+                {/* masonry gird here */}
+                <Masonry
+                    breakpointCols={3}
+                    className="my-masonry-grid"
+                    columnClassName="my-masonry-grid_column">
+                    {/* array of JSX items */}
 
-                <Col className="col-4 px-2">
-                    <img src={moto} alt="" className='rounded w-100 mb-2' />
-                    <div className="d-flex align-items-center mb-2">
-                        <img src={zayn} alt="" className='userIcons' />
-                        zayn
-                        <div className="w-100 text-end">
-                            <img src={heart} alt="" className='icons me-2' />
-                            <img src={speechBubble} alt="" className='icons me-2' />
-                            <img src={paperPlane} alt="" className='icons' />
+                    <Col>
+                        <img src={waterFall} alt="" className='rounded w-100 mb-2' />
+                        <div className="d-flex align-items-center mb-2">
+                            <img src={zayn} alt="" className='userIcons' />
+                            zayn
+                            <div className="w-100 text-end">
+                                <img src={heart} alt="" className='icons me-2' />
+                                <img src={speechBubble} alt="" className='icons me-2' />
+                                <img src={paperPlane} alt="" className='icons' />
+                            </div>
                         </div>
-                    </div>
-                    <div className='text-end'>
-                        126.100 Like
-                    </div>
-                </Col>
-                <Col className="col-4 px-2">
-                    <img src={city} alt="" className='rounded w-100 mb-2' />
-                    <div className="d-flex align-items-center mb-2">
-                        <img src={zayn} alt="" className='userIcons' />
-                        zayn
-                        <div className="w-100 text-end">
-                            <img src={heart} alt="" className='icons me-2' />
-                            <img src={speechBubble} alt="" className='icons me-2' />
-                            <img src={paperPlane} alt="" className='icons' />
+                        <div className='text-end'>
+                            126.100 Like
                         </div>
-                    </div>
-                    <div className='text-end'>
-                        126.100 Like
-                    </div>
-                </Col>
-                <Col className="col-4 px-2">
-                    <img src={kelapa} alt="" className='rounded w-100 mb-2' />
-                    <div className="d-flex align-items-center mb-2">
-                        <img src={zayn} alt="" className='userIcons' />
-                        zayn
-                        <div className="w-100 text-end">
-                            <img src={heart} alt="" className='icons me-2' />
-                            <img src={speechBubble} alt="" className='icons me-2' />
-                            <img src={paperPlane} alt="" className='icons' />
-                        </div>
-                    </div>
-                    <div className='text-end'>
-                        126.100 Like
-                    </div>
-                </Col>
-                <Col className="col-4 px-2">
-                    <img src={man} alt="" className='rounded w-100 mb-2' />
-                    <div className="d-flex align-items-center mb-2">
-                        <img src={zayn} alt="" className='userIcons' />
-                        zayn
-                        <div className="w-100 text-end">
-                            <img src={heart} alt="" className='icons me-2' />
-                            <img src={speechBubble} alt="" className='icons me-2' />
-                            <img src={paperPlane} alt="" className='icons' />
-                        </div>
-                    </div>
-                    <div className='text-end'>
-                        126.100 Like
-                    </div>
-                </Col>
+                    </Col>
 
+                    <Col>
+                        <img src={holiday} alt="" className='rounded w-100 mb-2' />
+                        <div className="d-flex align-items-center mb-2">
+                            <img src={zayn} alt="" className='userIcons' />
+                            zayn
+                            <div className="w-100 text-end">
+                                <img src={heart} alt="" className='icons me-2' />
+                                <img src={speechBubble} alt="" className='icons me-2' />
+                                <img src={paperPlane} alt="" className='icons' />
+                            </div>
+                        </div>
+                        <div className='text-end'>
+                            126.100 Like
+                        </div>
+                    </Col>
+
+                    <Col>
+                        <img src={moto} alt="" className='rounded w-100 mb-2' />
+                        <div className="d-flex align-items-center mb-2">
+                            <img src={zayn} alt="" className='userIcons' />
+                            zayn
+                            <div className="w-100 text-end">
+                                <img src={heart} alt="" className='icons me-2' />
+                                <img src={speechBubble} alt="" className='icons me-2' />
+                                <img src={paperPlane} alt="" className='icons' />
+                            </div>
+                        </div>
+                        <div className='text-end'>
+                            126.100 Like
+                        </div>
+                    </Col>
+                    <Col>
+                        <img src={city} alt="" className='rounded w-100 mb-2' />
+                        <div className="d-flex align-items-center mb-2">
+                            <img src={zayn} alt="" className='userIcons' />
+                            zayn
+                            <div className="w-100 text-end">
+                                <img src={heart} alt="" className='icons me-2' />
+                                <img src={speechBubble} alt="" className='icons me-2' />
+                                <img src={paperPlane} alt="" className='icons' />
+                            </div>
+                        </div>
+                        <div className='text-end'>
+                            126.100 Like
+                        </div>
+                    </Col>
+                    <Col>
+                        <img src={kelapa} alt="" className='rounded w-100 mb-2' />
+                        <div className="d-flex align-items-center mb-2">
+                            <img src={zayn} alt="" className='userIcons' />
+                            zayn
+                            <div className="w-100 text-end">
+                                <img src={heart} alt="" className='icons me-2' />
+                                <img src={speechBubble} alt="" className='icons me-2' />
+                                <img src={paperPlane} alt="" className='icons' />
+                            </div>
+                        </div>
+                        <div className='text-end'>
+                            126.100 Like
+                        </div>
+                    </Col>
+                    <Col>
+                        <img src={man} alt="" className='rounded w-100 mb-2' />
+                        <div className="d-flex align-items-center mb-2">
+                            <img src={zayn} alt="" className='userIcons' />
+                            zayn
+                            <div className="w-100 text-end">
+                                <img src={heart} alt="" className='icons me-2' />
+                                <img src={speechBubble} alt="" className='icons me-2' />
+                                <img src={paperPlane} alt="" className='icons' />
+                            </div>
+                        </div>
+                        <div className='text-end'>
+                            126.100 Like
+                        </div>
+                    </Col>
+                </Masonry>
             </div>
         </>
     )
