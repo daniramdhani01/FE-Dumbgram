@@ -1,5 +1,3 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'
 import { Col, Button, InputGroup, FormControl } from 'react-bootstrap'
 
@@ -10,7 +8,6 @@ import paperPlane from '../assets/icons/paper-plane.svg'
 import plus from '../assets/icons/plus.svg'
 
 function Header() {
-    const notify = () => toast("Wow so easy!");
     return (
         <div className='d-flex mb-4'>
             <Col>
@@ -27,9 +24,7 @@ function Header() {
                 </InputGroup>
             </Col>
             <Col className='d-flex justify-content-end align-items-center'>
-                <Button onClick={notify}>
                     <img src={bell} alt="" className='me-4' />
-                </Button>
                 <Link to='/message'>
                     <img src={paperPlane} alt="" className='me-4' />
                 </Link>
