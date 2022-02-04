@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
+import { BrowserRouter as Router, useNavigate } from "react-router-dom";
+import { UserContextProvider } from "./context/userContext";
 import App from './App';
-// import reportWebVitals from './reportWebVitals';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+
+    <UserContextProvider>
+      <Router>
+        <App />
+      </Router>
+    </UserContextProvider>
+
   </React.StrictMode>,
   document.getElementById('root')
 );

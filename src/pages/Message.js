@@ -5,7 +5,7 @@ import Sender from "../components/Sender"
 function Message() {
     return (
         <Container fluid="xxl" className="d-flex">
-            <div className="col-3">
+            <div className="col-3 overflow-hidden">
                 <Sender />
             </div>
             <div>

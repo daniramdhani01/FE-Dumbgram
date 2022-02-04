@@ -1,26 +1,46 @@
-import Register from './Register'
-import { useState } from 'react'
 import { Button, Modal, InputGroup, FormControl } from 'react-bootstrap'
 import { useNavigate, Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { UserContext } from '../context/userContext'
+
+import Register from './Register'
+import { useState } from 'react'
 
 function Login(props) {
-  const { isButton } = props
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
   const navigate = useNavigate()
+  const { isButton, setModalRegister, setModalLogin } = props
+
+  console.log(props)
+
+  const handleOpenModal = () => {
+    setModalRegister(true)
+    setModalLogin(false)
+  }
+
   const handleClick = () => {
+    navigate('/feed')
+  }
+
+  const [state, dispatch] = useContext(UserContext)
+
+  const login = () => {
+    dispatch({
+      type: "LOGIN_SUCCESS",
+      payload: {
+        id: 1,
+        name: 'dani',
+        username: 'dani',
+        email: 'dani01@gmail.com',
+        token: 'disini tokennya',
+      }
+    })
     navigate('/feed')
   }
 
   return (
     <>
-      {isButton ?
-        <Button variant="primary btn-rainbow px-5" onClick={handleShow}>Login</Button> :
-        <span className='text-white' onClick={handleShow}>{' '}Here</span>
-      }
-
-      <Modal show={show} onHide={handleClose} dialogClassName="modal-90w" centered className=''>
+      <Modal {...props} dialogClassName="modal-90w" centered className=''>
         <Modal.Body className='rounded-2 bg-dark'>
           <Modal.Title className='mb-4 fs-1'>Login</Modal.Title>
           <InputGroup className="mb-3">
@@ -45,8 +65,7 @@ function Login(props) {
             </Button>
           </Link>
           <div className="text-secondary d-flex justify-content-center mb-2">
-            Don't have an account ? Klik
-            <Register isButton={false} />
+            Don't have an account ? Klik <a className='btn text-white p-0 ms-1' onClick={handleOpenModal}> here </a>
           </div>
 
         </Modal.Body>

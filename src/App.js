@@ -1,6 +1,8 @@
 // import logo from './logo.svg';
 // import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+// import { useContext, useEffect, useState } from 'react'
+// import { UserContext } from './context/userContext'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 //pages
@@ -16,19 +18,28 @@ import EditProfile from './pages/EditProfile'
 import Login from './components/Login'
 
 function App() {
+
+  // let navigate = useNavigate()
+  // const [state, dispatch] = useContext(UserContext)
+
+  // useEffect(() => {
+  //   if (state.isLogin === false) {
+  //     navigate('/')
+  //   }
+  // }, [state])
+
   return (
-    <Router>
-      <Routes>
-        <Route exact path='/' element={<LandingPage />} />
-        <Route exact path='/explore' element={<Explore />} />
-        <Route exact path='/feed' element={<Feed />} />
-        <Route exact path='/create-post' element={<CreatePost />} />
-        <Route exact path='/profile-people' element={<ProfilePeople />} />
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/message' element={<Message />} />
-        <Route exact path='/edit-profile' element={<EditProfile />} />
-      </Routes>
-    </Router>
+
+    <Routes>
+      <Route exact path='/' element={<LandingPage />} />
+      <Route exact path='/explore' element={<Explore />} />
+      <Route exact path='/feed' element={<Feed />} />
+      <Route exact path='/create-post' element={<CreatePost />} />
+      <Route exact path='/profile-people' element={<ProfilePeople />} />
+      <Route exact path='/login' element={<Login />} />
+      <Route exact path='/message' element={<Message />} />
+      <Route exact path='/edit-profile' element={<EditProfile />} />
+    </Routes>
   );
 }
 

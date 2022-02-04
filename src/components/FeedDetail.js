@@ -28,58 +28,39 @@ function FeedDetail() {
     return (
         <div>
             <Modal size="lg" show={show} onHide={handleClose} centered>
-                <Modal.Body closeButton className='bg-dark rounded'>
+                <Modal.Body className='bg-dark rounded p-0' style={{minHeight:'350px'}}>
                     <div className="d-flex">
                         {/* image post */}
-                        <img src={holiday} alt="" className='rounded w-100 mb-2' />
-                        <div className='col-4 p-3 '>
+                        <div className='col-7'>
+                            <img src={holiday} alt="" className='rounded' style={{width:'100%'}}/>
+                        </div>
+
+                        <div className='col-5 p-3'>
 
                             {/* user post*/}
-                            <table>
-                                <tr>
-                                    <td>
-                                        <Link to='/profile-people' className='text-decoration-none text-white'>
-                                            <img src={zayn} alt="" className='userIcons' />
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Link to='/profile-people' className='text-decoration-none text-white'>
-                                            zayn
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td className='text-secondary'>
-                                        To Begin Again..
-                                    </td>
-                                </tr>
-                            </table>
+                            <div>
+                                <img src={zayn} alt="" className='userIcons'style={{width:32}}/>
+                                <Link to='/profile-people' className='text-decoration-none text-white'>
+                                zayn
+                                </Link>
+                                </div>
+                                <div style={{marginLeft:43}} className='text-secondary'>
+                                To Begin Again..
+                                </div>
                             <hr />
                             {/* end of user post */}
 
                             {/* user comment */}
-                            <div style={{ height: '60%' }}>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <Link to='/profile-people' className='text-decoration-none text-white'>
-                                                <img src={zayn} alt="" className='userIcons' />
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <Link to='/profile-people' className='text-decoration-none text-white'>
-                                                abdul_h
-                                            </Link>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td className='text-secondary'>
-                                            Nice Place
-                                        </td>
-                                    </tr>
-                                </table>
+                            <div style={{ height: '' }} className='overflow-auto bg-info bg-warning'>
+                                <div>
+                                <img src={zayn} alt="" className='userIcons'style={{width:32}}/>
+                                <Link to='/profile-people' className='text-decoration-none text-white'>
+                                    abdul_h
+                                </Link>
+                                </div>
+                                <div style={{marginLeft:43}} className='text-secondary'>
+                                Nice Place
+                                </div>
                             </div>
                             {/* end of user comments */}
 

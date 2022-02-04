@@ -1,11 +1,14 @@
-import { Link } from 'react-router-dom'
-import { Col, Button, InputGroup, FormControl } from 'react-bootstrap'
+import { Link, } from 'react-router-dom'
+import { Col, Dropdown, InputGroup, FormControl } from 'react-bootstrap'
 
 //icons
 import loupe from '../assets/icons/loupe.svg'
 import bell from '../assets/icons/bell.svg'
 import paperPlane from '../assets/icons/paper-plane.svg'
 import plus from '../assets/icons/plus.svg'
+
+// import image
+import man from '../assets/man.png'
 
 function Header() {
     return (
@@ -24,7 +27,22 @@ function Header() {
                 </InputGroup>
             </Col>
             <Col className='d-flex justify-content-end align-items-center'>
-                    <img src={bell} alt="" className='me-4' />
+                <Dropdown>
+                    <Dropdown.Toggle id="" variant="black">
+                        <img src={bell} alt="" className='me-4' />
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu variant="dark">
+                        <Dropdown.Item href="#/action-1" className='mb-2'>
+                            <div>
+                            <img src={man} alt="" className='rounded-circle' style={{ width: 32, marginRight:12 }} /> Abdullah
+                            </div>
+                            <div className='ms-5'>
+                                Komentar : <span className='text-secondary'>nice place</span>
+                            </div>
+                        </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
                 <Link to='/message'>
                     <img src={paperPlane} alt="" className='me-4' />
                 </Link>
