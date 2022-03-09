@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Col } from 'react-bootstrap'
-import logo from '../assets/logo.svg'
-import man from '../assets/man.png'
 
-function Sender() {
+import logo from '../../assets/logo.svg'
+import man from '../../assets/man.png'
+
+export default function Contact() {
     return (
         <>
             <div className='p-4 sticky-top'>
@@ -36,5 +37,3 @@ function Sender() {
         </>
     )
 }
-
-export default Sender

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, useNavigate } from "react-router-dom";
 import { UserContextProvider } from "./context/userContext";
 import App from './App';
+import { Container } from 'react-bootstrap';
 
 
 ReactDOM.render(
@@ -10,7 +11,9 @@ ReactDOM.render(
 
     <UserContextProvider>
       <Router>
-        <App />
+        <Container fluid="xxl">
+          <App />
+        </Container>
       </Router>
     </UserContextProvider>
 

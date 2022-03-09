@@ -1,4 +1,4 @@
-import Header from "./Header"
+import Header from "../Header"
 
 function MessageDetail() {
     return (
@@ -9,7 +9,7 @@ function MessageDetail() {
             {/* message here */}
             <div className="p-4 mb-3 h-75 d-flex justify-content-center align-items-center">
                 <h2>
-                No Message
+                    No Message
                 </h2>
             </div>
         </>

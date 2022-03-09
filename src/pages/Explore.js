@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap"
-import Profile from "../components/Profile"
-import ExploreDetail from "../components/ExploreDetail"
+import Profile from "../components/profile/Profile"
+import ExploreDetail from "../components/feed/ExploreDetail"
 
 
 

@@ -1,8 +1,6 @@
 import { Container } from "react-bootstrap"
-import Profile from "../components/Profile"
-import CreatePostComponen from "../components/CreatePostComponent"
-
-
+import Profile from "../components/profile/Profile"
+import CreatePostComponen from "../components/feed/CreatePostComponent"
 
 function CreatePost() {
     return (

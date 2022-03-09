@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap"
-import FeedPeople from "../components/FeedPeople"
-import ProfilePeopleComponent from "../components/ProfilePeopleComponent"
+import FeedPeople from "../components/feed/FeedPeople"
+import ProfilePeopleComponent from "../components/profile/ProfilePeopleComponent"
 
 function ProfilePeople() {
     return (

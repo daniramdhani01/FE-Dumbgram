@@ -1,9 +1,9 @@
 import { Container } from "react-bootstrap"
-import Profile from "../components/Profile"
-import FeedDetail from "../components/FeedDetail"
-import EditProfileComponent from "../components/EditProfileComponent"
+import Profile from "../components/profile/Profile"
+import FeedDetail from "../components/feed/FeedDetail"
+import EditProfileComponent from "../components/profile/EditProfileComponent"
 
-function Feed() {
+export default function Feed() {
     return (
         <Container fluid="xxl" className="d-flex">
             <div className="col-3">
@@ -19,5 +19,3 @@ function Feed() {
         </Container >
     )
 }
-
-export default Feed

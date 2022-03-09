@@ -35,7 +35,7 @@ function Header() {
                     <Dropdown.Menu variant="dark">
                         <Dropdown.Item href="#/action-1" className='mb-2'>
                             <div>
-                            <img src={man} alt="" className='rounded-circle' style={{ width: 32, marginRight:12 }} /> Abdullah
+                                <img src={man} alt="" className='rounded-circle' style={{ width: 32, marginRight: 12 }} /> Abdullah
                             </div>
                             <div className='ms-5'>
                                 Komentar : <span className='text-secondary'>nice place</span>

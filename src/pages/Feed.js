@@ -3,28 +3,28 @@ import { useContext } from "react"
 import { Container } from "react-bootstrap"
 
 import { UserContext } from '../context/userContext'
-import Profile from "../components/Profile"
-import FeedDetail from "../components/FeedDetail"
+import Profile from "../components/profile/Profile"
+import FeedDetail from "../components/feed/FeedDetail"
+import { setAuthToken } from '../config/api'
+
+if (localStorage.token) {
+    setAuthToken(localStorage.token);
+}
 
 function Feed() {
     const navigate = useNavigate();
 
     const [state] = useContext(UserContext)
 
-    const isLogin = false
-
     const checkAuth = () => {
-        // if (state.isLogin === false) {
-        if (isLogin === false) {
-            // console.log('its work. isLogin =', state.isLogin)
-            navigate("/login")
-            console.log('its work')
+        if (state.isLogin === false) {
+            navigate("/")
         }
     }
     checkAuth()
 
     return (
-        <Container fluid="xxl" className="d-flex">
+        <div className="d-flex">
             <div className="col-3 overflow-hidden">
                 <Profile />
             </div>
@@ -35,7 +35,7 @@ function Feed() {
             <div className="col-9">
                 <FeedDetail />
             </div>
-        </Container >
+        </div >
     )
 }
 
