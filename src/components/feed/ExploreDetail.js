@@ -1,92 +1,10 @@
 import { useState, useContext, useEffect, } from 'react'
-import { Modal, InputGroup, FormControl, Button } from 'react-bootstrap'
 import Masonry from 'react-masonry-css'
 import { useNavigate } from 'react-router-dom'
 import Header from '../Header'
 import { API } from '../../config/api'
 import { UserContext } from '../../context/userContext'
-
-//icons
-import heart from '../../assets/icons/heart.svg'
-import paperPlane from '../../assets/icons/paper-plane.svg'
-import speechBubble from '../../assets/icons/speech-bubble.svg'
-
-//image
-import holiday from '../../assets/holiday.png'
-import zayn from '../../assets/zayn.png'
-
-function FeedModal(props) {
-    const { feed } = props
-
-    const navigate = useNavigate()
-
-    // console.log(feed)
-    return (
-        <Modal size="lg" {...props} centered>
-            <Modal.Body className='bg-dark rounded p-0' style={{ minHeight: '350px' }}>
-                <div className="d-flex">
-                    {/* image post */}
-                    <div className='col-7'>
-                        <img src={feed.filename} alt="" className='rounded' style={{ width: '100%' }} />
-                    </div>
-
-                    <div className='col-5 p-3'>
-
-                        {/* user post*/}
-                        <div>
-                            <img src={zayn} alt="" className='userIcons' style={{ width: 32 }} />
-                            <a className='btn text-white p-0' onClick={() => { navigate('/profile-people/' + feed.user.id) }}>
-                                {feed.user.username}
-                            </a>
-                        </div>
-                        <div style={{ marginLeft: 43 }} className='text-secondary'>
-                            {feed.caption}
-                        </div>
-                        <hr />
-                        {/* end of user post */}
-
-                        {/* user comment */}
-
-                        {/* {feed.comments.map((item, index) => {
-                            return (
-                                <div key={index} style={{ height: '' }} className='overflow-auto'>
-                                    <div>
-                                        <img src={zayn} alt="" className='userIcons' style={{ width: 32 }} />
-                                        <Link to='/profile-people' className='text-decoration-none text-white'>
-                                            {item.user.username}
-                                        </Link>
-                                    </div>
-                                    <div style={{ marginLeft: 43 }} className='text-secondary'>
-                                        {item.comment}
-                                    </div>
-                                </div>
-                            )
-                        })} */}
-
-                        {/* end of user comments */}
-
-                        <div className="w-100 text-end">
-                            <img src={heart} alt="" className='icons me-2' />
-                            <img src={speechBubble} alt="" className='icons me-2' />
-                            <img src={paperPlane} alt="" className='icons' />
-
-                            {/* Count Likes */}
-                            <div className="mt-2 mb-1">
-                                {feed.like} Like
-                            </div>
-                        </div>
-                        <InputGroup>
-                            <FormControl
-                                placeholder="Comment ..."
-                                className='bg-secondary placeholder-edit text-white'
-                            />
-                        </InputGroup>
-                    </div>
-                </div>
-            </Modal.Body>
-        </Modal>
-    )
-}
+import FeedModal from './FeedModal'
 
 export default function ExploreDetail() {
     const [modal, setModal] = useState(false)
