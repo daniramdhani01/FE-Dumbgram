@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const API = axios.create({
-    baseURL: "https://be-dumbgram.herokuapp.com//api/v1/",
+    baseURL: "https://be-dumbgram.herokuapp.com/api/v1/",
 });
 
 export const setAuthToken = (token) => {
