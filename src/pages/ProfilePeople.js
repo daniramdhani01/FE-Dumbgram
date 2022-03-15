@@ -1,10 +1,9 @@
-import { Container } from "react-bootstrap"
 import FeedPeople from "../components/feed/FeedPeople"
 import ProfilePeopleComponent from "../components/profile/ProfilePeopleComponent"
 
 function ProfilePeople() {
     return (
-        <Container fluid="xxl" className="d-flex">
+        <div className="d-flex">
             <div className="col-3 overflow-hidden">
                 <ProfilePeopleComponent />
             </div>
@@ -14,7 +13,7 @@ function ProfilePeople() {
             <div className="col-9">
                 <FeedPeople />
             </div>
-        </Container>
+        </div>
     )
 }
 

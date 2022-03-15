@@ -1,5 +1,4 @@
 import { Modal, InputGroup, FormControl } from 'react-bootstrap'
-import { API } from '../../config/api'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -7,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import heart from '../../assets/icons/heart.svg'
 import paperPlane from '../../assets/icons/paper-plane.svg'
 import speechBubble from '../../assets/icons/speech-bubble.svg'
+import account from '../../assets/icons/account.svg'
 
 //image
 import zayn from '../../assets/zayn.png'
@@ -14,13 +14,6 @@ import zayn from '../../assets/zayn.png'
 export default function FeedModal(props) {
     const { feed } = props
     const navigate = useNavigate()
-
-    const [liked, setLiked] = useState(false)
-    const handleLike = () => {
-        API.post('/like/')
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
-    }
 
     const [dummy, setDummy] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 1])
     // console.log(feed)
@@ -39,7 +32,14 @@ export default function FeedModal(props) {
 
                         {/* user post*/}
                         <div>
-                            <img src={zayn} alt="" className='userIcons' style={{ width: 32 }} />
+                            {feed.user.image ?
+                                feed.user.image.slice(-5) == '/null' ?
+                                    <img src={account} className='userIcons rounded-circle' style={{ width: 32 }} />
+                                    :
+                                    <img src={feed.user.image} className='userIcons rounded-circle' style={{ width: 32 }} />
+                                :
+                                'no data'
+                            }
                             <a className='btn text-white p-0' onClick={() => { navigate('/profile-people/' + feed.user.id) }}>
                                 {feed.user.username}
                             </a>

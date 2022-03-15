@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
 import { useContext } from "react"
-import { Container } from "react-bootstrap"
 
 import { UserContext } from '../context/userContext'
 import Profile from "../components/profile/Profile"
@@ -25,7 +24,7 @@ function Feed() {
 
     return (
         <div className="d-flex">
-            <div className="col-3 overflow-hidden">
+            <div className="col-3">
                 <Profile />
             </div>
             {/* line */}

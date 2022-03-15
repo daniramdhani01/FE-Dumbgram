@@ -1,10 +1,9 @@
-import { Container } from "react-bootstrap"
 import Profile from "../components/profile/Profile"
 import CreatePostComponen from "../components/feed/CreatePostComponent"
 
 function CreatePost() {
     return (
-        <Container fluid="xxl" className="d-flex">
+        <div className="d-flex">
             <div className="col-3">
                 <Profile />
             </div>
@@ -14,7 +13,7 @@ function CreatePost() {
             <div className="col-9">
                 <CreatePostComponen />
             </div>
-        </Container>
+        </div>
 
 
     )

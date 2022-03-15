@@ -10,9 +10,7 @@ import FeedModal from './FeedModal'
 import heart from '../../assets/icons/heart.svg'
 import paperPlane from '../../assets/icons/paper-plane.svg'
 import speechBubble from '../../assets/icons/speech-bubble.svg'
-
-//image
-import zayn from '../../assets/zayn.png'
+import account from '../../assets/icons/account.svg'
 
 export default function FeedPeopleDetail() {
     const { id } = useParams()
@@ -23,7 +21,7 @@ export default function FeedPeopleDetail() {
         id: '',
         like: '',
         likes: '',
-        user: '',
+        user: { image: '' },
         comments: '',
     })
 
@@ -35,7 +33,7 @@ export default function FeedPeopleDetail() {
         id: '',
         like: '',
         likes: '',
-        user: '',
+        user: { image: '' },
     }])
     const [state] = useContext(UserContext)
 
@@ -63,6 +61,17 @@ export default function FeedPeopleDetail() {
     // Call function get products with useEffect didMount (first call data) here ...
     useEffect(() => {
         getFeeds()
+
+        return () => {
+            setFeed([{
+                caption: '',
+                filename: '',
+                id: '',
+                like: '',
+                likes: '',
+                user: '',
+            }])
+        }
     }, [])
 
     const [isLike, setisLike] = useState(false)
@@ -100,9 +109,15 @@ export default function FeedPeopleDetail() {
                                         <img src={item.filename} className='rounded w-100 mb-2' />
                                     </a>
                                     <div className="d-flex align-items-center mb-2 flex-wrap">
-                                        {/* <img src={item.user.image} className='userIcons' /> */}
                                         <div className='d-flex ps-3'>
-                                            <img src={zayn} className='userIcons' />
+                                            {item.user.image ?
+                                                item.user.image.slice(-5) == '/null' ?
+                                                    <img src={account} className='userIcons rounded-circle' style={{ width: 32 }} />
+                                                    :
+                                                    <img src={item.user.image} className='userIcons rounded-circle' style={{ width: 32 }} />
+                                                :
+                                                'no data'
+                                            }
                                             {item.user.username}
                                         </div>
                                         <div className="w-100 text-end pe-3">

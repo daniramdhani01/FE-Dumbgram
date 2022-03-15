@@ -1,16 +1,19 @@
-import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap'
+import { useState, useContext } from 'react';
+import { Button, Form, Alert } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
+
 import Header from '../Header'
 import { API } from '../../config/api'
+import { UserContext } from '../../context/userContext'
 
-function CreatePostComponen() {
+export default function CreatePostComponen() {
     const navigate = useNavigate()
 
     const [preview, setPreview] = useState(null); //For image preview
-
+    const [message, setMessage] = useState(null);
+    const [state, dispatch] = useContext(UserContext)
     const [form, setForm] = useState({
-        image: '',
+        feed: '',
         caption: '',
     })
 
@@ -35,6 +38,7 @@ function CreatePostComponen() {
             // Content-type: multipart/form-data
             const config = {
                 header: {
+                    Authorization: "Bearer " + localStorage.token,
                     'Content-type': 'multipart/form-data'
                 },
             }
@@ -42,16 +46,66 @@ function CreatePostComponen() {
             // Create store data with FormData as object here ...
             const formData = new FormData()
 
-            formData.set('image', form.image[0], form.image[0].name)
+            if (form.feed) {
+                formData.set('feed', form.feed[0], form.feed[0].name)
+            }
+
             formData.set('caption', form.caption)
 
             //insert data here
             const response = await API.post('/feed', formData, config);
 
-            console.log(response);
+            const checkUser = async () => {
+                try {
+                    const config = {
+                        header: {
+                            Authorization: "Bearer " + localStorage.token,
+                        },
+                    }
+                    const response = await API.get('/check-auth', config);
 
-            navigate('/feed')
+                    // If the token incorrect
+                    if (response.status === 'failed') {
+                        return dispatch({
+                            type: 'AUTH_ERROR',
+                        });
+                    }
+
+                    // Get user data
+                    let payload = response.data.data.user;
+
+                    // Get token from local storage
+                    payload.token = localStorage.token;
+
+                    // Send data to useContext
+                    dispatch({
+                        type: 'USER_SUCCESS',
+                        payload,
+                    });
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+
+            // Notification
+            if (response.data.status == 'success') {
+                checkUser();
+                navigate('/feed')
+            } else {
+                const alert = (
+                    <Alert variant="danger" className="py-1 text-center">
+                        Failed! {response.data.message}
+                    </Alert>
+                );
+                setMessage(alert);
+            }
         } catch (err) {
+            const alert = (
+                <Alert variant="danger" className="py-1 text-center">
+                    Failed!
+                </Alert>
+            );
+            setMessage(alert);
             console.log(err)
         }
     }
@@ -68,7 +122,7 @@ function CreatePostComponen() {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId='uploadImage'>
                         <Form.Label className='btn btn-rainbow text-white'>Upload Photo</Form.Label>
-                        <Form.Control type='file' name='image' hidden onChange={handleChange} />
+                        <Form.Control type='file' name='feed' hidden onChange={handleChange} />
                         {preview && (
                             <div>
                                 <img
@@ -93,6 +147,7 @@ function CreatePostComponen() {
                             onChange={handleChange}
                         />
                     </Form.Group>
+                    {message && message}
                     <div className='d-flex justify-content-end mt-5'>
                         <Button type='submit' variant='secondary btn-rainbow px-5'>Upload</Button>
                     </div>
@@ -101,5 +156,3 @@ function CreatePostComponen() {
         </>
     )
 }
-
-export default CreatePostComponen

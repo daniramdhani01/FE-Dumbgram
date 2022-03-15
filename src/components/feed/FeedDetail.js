@@ -10,9 +10,7 @@ import FeedModal from './FeedModal'
 import heart from '../../assets/icons/heart.svg'
 import paperPlane from '../../assets/icons/paper-plane.svg'
 import speechBubble from '../../assets/icons/speech-bubble.svg'
-
-//image
-import zayn from '../../assets/zayn.png'
+import account from '../../assets/icons/account.svg'
 
 export default function FeedDetail() {
     const [modal, setModal] = useState(false)
@@ -22,7 +20,7 @@ export default function FeedDetail() {
         id: '',
         like: '',
         likes: '',
-        user: '',
+        user: { image: '' },
         comments: '',
     })
 
@@ -34,7 +32,7 @@ export default function FeedDetail() {
         id: '',
         like: '',
         likes: '',
-        user: '',
+        user: { image: '' },
     }])
     const [state] = useContext(UserContext)
 
@@ -64,20 +62,38 @@ export default function FeedDetail() {
     // Call function get products with useEffect didMount (first call data) here ...
     useEffect(() => {
         getFeeds()
-    }, [feed])
+
+        return () => {
+            setFeed([{
+                caption: '',
+                filename: '',
+                id: '',
+                like: '',
+                likes: '',
+                user: { image: '' },
+            }])
+        }
+    }, [])
 
     const [isLike, setisLike] = useState([false])
 
-
+    // console.log(feed)
     return (
-        <div>
-            <div>
-                <div className="p-4 sticky-top bg-black pb-3">
-                    <Header />
-                    <h2>Feed</h2>
-                </div>
+        <>
+            <div className="p-4 sticky-top bg-black pb-3">
+                <Header />
+                <h2>Feed</h2>
+            </div>
 
+            {!feed[0] ?
+                <div className="p-4 mb-3 h-50 d-flex justify-content-center align-items-center">
+                    <h3>
+                        No Data Feeds
+                    </h3>
+                </div>
+                :
                 <div className="px-4">
+
                     {/* masonry gird here */}
                     <Masonry
                         breakpointCols={3}
@@ -92,8 +108,14 @@ export default function FeedDetail() {
                                     <img src={item.filename} className='rounded w-100 mb-2' />
                                 </a>
                                 <div className="d-flex align-items-center mb-2 flex-wrap" >
-                                    {/* <img src={item.user.image} className='userIcons' /> */}
-                                    <img src={zayn} className='userIcons' />
+                                    {item.user.image ?
+                                        item.user.image.slice(-5) == '/null' ?
+                                            <img src={account} className='userIcons rounded-circle' style={{ width: 32 }} />
+                                            :
+                                            <img src={item.user.image} className='userIcons rounded-circle' style={{ width: 32 }} />
+                                        :
+                                        'no data'
+                                    }
                                     {item.user.username}
                                     <div className="w-100 text-end" style={{ minWidth: '50px' }}>
                                         {/* {isLike ?
@@ -118,7 +140,7 @@ export default function FeedDetail() {
                             feed={dataFeedM} />
                     </Masonry>
                 </div>
-            </div >
-        </div >
+            }
+        </>
     )
 }

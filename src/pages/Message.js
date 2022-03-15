@@ -1,11 +1,26 @@
-import { useState } from "react"
-import { Container } from "react-bootstrap"
-import Chat from "../components/message/Chat"
-import Contact from "../components/message/Contact"
+import { useEffect, useState } from "react";
 
-import man from '../assets/man.png'
+// import components
+import Chat from "../components/message/Chat";
+import Contact from "../components/message/Contact";
 
-function Message() {
+//import pic or icon
+import man from '../assets/man.png';
+
+import { io } from 'socket.io-client';
+
+let socket;
+
+export default function Message() {
+
+    useEffect(() => {
+        socket = io('http://localhost:5000')
+
+        return () => {
+            socket.disconnect()
+        }
+    }, [])
+
     const [contact, setContact] = useState(null)
 
     const dataContact = [
@@ -23,7 +38,7 @@ function Message() {
         }
     ]
     return (
-        <Container fluid="xxl" className="d-flex">
+        <div className="d-flex">
             <div className="col-3 overflow-hidden">
                 <Contact dataContact={dataContact} setContact={setContact} contact={contact} />
             </div>
@@ -33,8 +48,6 @@ function Message() {
             <div className="col-9">
                 <Chat contact={contact} />
             </div>
-        </Container>
+        </div>
     )
 }
-
-export default Message

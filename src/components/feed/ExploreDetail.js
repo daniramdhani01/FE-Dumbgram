@@ -55,6 +55,17 @@ export default function ExploreDetail() {
     // Call function get products with useEffect didMount (first call data) here ...
     useEffect(() => {
         getFeeds()
+
+        return () => {
+            setFeed([{
+                caption: '',
+                filename: '',
+                id: '',
+                like: '',
+                likes: '',
+                user: '',
+            }])
+        }
     }, [])
 
     const [isLike, setisLike] = useState(false)
@@ -68,13 +79,19 @@ export default function ExploreDetail() {
     }
 
     return (
-        <div>
-            <div>
-                <div className="p-4 sticky-top bg-black pb-3">
-                    <Header />
-                    <h2>Explore</h2>
-                </div>
+        <>
+            <div className="p-4 sticky-top bg-black pb-3">
+                <Header />
+                <h2>Explore</h2>
+            </div>
 
+            {!feed[0] ?
+                <div className="p-4 mb-3 h-50 d-flex justify-content-center align-items-center">
+                    <h3>
+                        No Data Explore
+                    </h3>
+                </div>
+                :
                 <div className="px-4">
                     {/* masonry gird here */}
                     <Masonry
@@ -98,7 +115,7 @@ export default function ExploreDetail() {
                             feed={dataFeedM} />
                     </Masonry>
                 </div>
-            </div>
-        </div >
+            }
+        </>
     )
 }

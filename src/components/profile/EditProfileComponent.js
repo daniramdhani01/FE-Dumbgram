@@ -1,21 +1,22 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Alert } from 'react-bootstrap'
 
 import Header from '../Header'
 import { API } from '../../config/api'
 import { UserContext } from '../../context/userContext'
 
-function CreatePostComponen() {
+export default function EditProfileComponent() {
+    const navigate = useNavigate()
     const [state, dispatch] = useContext(UserContext)
     const { id } = state.user
 
-    const navigate = useNavigate()
+    const [message, setMessage] = useState(null);
     const [preview, setPreview] = useState(null); //For image preview
     const [form, setForm] = useState({
         fullName: '',
         username: '',
-        image: '',
+        profile: '',
         bio: '',
     });
 
@@ -31,9 +32,7 @@ function CreatePostComponen() {
                 fullName: response.data.data.user.fullName,
                 username: response.data.data.user.username,
                 bio: response.data.data.user.bio,
-                // image: response.data.data.user.image
             });
-            // console.log(response.data.data.user)
         } catch (error) {
             console.log(error);
         }
@@ -41,6 +40,15 @@ function CreatePostComponen() {
 
     useEffect(() => {
         getDataUser(id);
+
+        return () => {
+            setForm({
+                fullName: '',
+                username: '',
+                profile: '',
+                bio: '',
+            })
+        }
     }, [])
 
     // console.log(form)
@@ -65,6 +73,7 @@ function CreatePostComponen() {
             // Content-type: multipart/form-data
             const config = {
                 header: {
+                    Authorization: "Bearer " + localStorage.token,
                     'Content-type': 'multipart/form-data'
                 },
             }
@@ -72,9 +81,10 @@ function CreatePostComponen() {
             // Create store data with FormData as object here ...
             const formData = new FormData()
 
-            if (form.image) {
-                formData.set('image', form.image[0], form.image[0].name)
+            if (form.profile) {
+                formData.set('profile', form.profile[0], form.profile[0].name)
             }
+
             formData.set('fullName', form.fullName)
             formData.set('username', form.username)
             formData.set('bio', form.bio)
@@ -85,10 +95,15 @@ function CreatePostComponen() {
             // console.log(response.data.data);
             const checkUser = async () => {
                 try {
-                    const response = await API.get('/check-auth');
+                    const config = {
+                        header: {
+                            Authorization: "Bearer " + localStorage.token,
+                        },
+                    }
+                    const response = await API.get('/check-auth', config);
 
                     // If the token incorrect
-                    if (response.status === 400) {
+                    if (response.status === 'failed') {
                         return dispatch({
                             type: 'AUTH_ERROR',
                         });
@@ -110,9 +125,25 @@ function CreatePostComponen() {
                 }
             };
 
-            checkUser();
-            navigate('/feed')
+            // Notification
+            if (response.data.status == 'success') {
+                checkUser();
+                navigate('/feed')
+            } else {
+                const alert = (
+                    <Alert variant="danger" className="py-1 text-center">
+                        Failed! {response.data.message}
+                    </Alert>
+                );
+                setMessage(alert);
+            }
         } catch (err) {
+            const alert = (
+                <Alert variant="danger" className="py-1 text-center">
+                    Failed!
+                </Alert>
+            );
+            setMessage(alert);
             console.log(err)
         }
     }
@@ -127,7 +158,7 @@ function CreatePostComponen() {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId='uploadImage'>
                         <Form.Label className='btn btn-rainbow text-white'>Attach Thumbhnail</Form.Label>
-                        <Form.Control type='file' name='image' hidden onChange={handleChange} />
+                        <Form.Control type='file' name='profile' hidden onChange={handleChange} />
                         {preview ? preview.slice(-5) == '/null' ? '' :
                             preview && (
                                 <div>
@@ -138,6 +169,7 @@ function CreatePostComponen() {
                                             maxHeight: '150px',
                                             objectFit: 'cover',
                                         }}
+                                        className='rounded-circle'
                                     // alt="preview"
                                     />
                                 </div>
@@ -167,10 +199,11 @@ function CreatePostComponen() {
                             as="textarea"
                             rows={6}
                             name='bio'
-                            value={form.bio}
+                            value={form.bio === null ? '' : form.bio}
                             onChange={handleChange}
                             placeholder='Bio' />
                     </Form.Group>
+                    {message && message}
                     <div className='d-flex justify-content-end mt-5'>
                         <Button type='submit' variant='secondary btn-rainbow px-5'>Save</Button>
                     </div>
@@ -179,5 +212,3 @@ function CreatePostComponen() {
         </>
     )
 }
-
-export default CreatePostComponen

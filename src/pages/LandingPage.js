@@ -1,8 +1,5 @@
 import { Container, Button } from 'react-bootstrap'
-import { useNavigate } from "react-router-dom"
-import { useContext, useState } from 'react'
-
-import { UserContext } from '../context/userContext'
+import { useState } from 'react'
 import Register from '../components/auth/Register'
 import Login from '../components/auth/Login'
 import '../styles/style.css'

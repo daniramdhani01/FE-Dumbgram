@@ -1,4 +1,3 @@
-import { Container } from "react-bootstrap"
 import Profile from "../components/profile/Profile"
 import ExploreDetail from "../components/feed/ExploreDetail"
 
@@ -6,7 +5,7 @@ import ExploreDetail from "../components/feed/ExploreDetail"
 
 function Explore() {
     return (
-        <Container fluid="xxl" className="d-flex">
+        <div className="d-flex">
             <div className="col-3 overflow-hidden">
                 <Profile />
             </div>
@@ -16,7 +15,7 @@ function Explore() {
             <div className="col-9">
                 <ExploreDetail />
             </div>
-        </Container>
+        </div>
     )
 }
 

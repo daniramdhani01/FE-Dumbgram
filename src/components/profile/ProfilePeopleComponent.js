@@ -6,7 +6,7 @@ import { UserContext } from '../../context/userContext'
 import { API, } from '../../config/api'
 
 //icons
-import edit from '../../assets/icons/edit.svg'
+// import edit from '../../assets/icons/edit.svg'
 import home from '../../assets/icons/home.svg'
 import compass from '../../assets/icons/compass.svg'
 import logout from '../../assets/icons/logout.svg'
@@ -18,9 +18,9 @@ import logo from '../../assets/logo.svg'
 export default function ProfilePeopleComponent() {
     const { id } = useParams()
     const [dataUser, setDataUser] = useState({
-        following: '',
-        follower: '',
-        post: '',
+        following: '0',
+        follower: '0',
+        post: '0',
         user: '',
     })
     const [isFollow, setIsFollow] = useState('false')
@@ -47,7 +47,7 @@ export default function ProfilePeopleComponent() {
 
             let checkFollower
             if (response2.data.data.follower) {
-                if (state.user.id == id) {
+                if (state.user.id === id) {
                     return setIsFollow('myAccount')
                 }
 
@@ -67,10 +67,6 @@ export default function ProfilePeopleComponent() {
 
     useEffect(() => {
         count()
-    }, [])
-
-    useEffect(() => {
-        count()
     }, [isFollow])
 
 
@@ -83,9 +79,9 @@ export default function ProfilePeopleComponent() {
 
     const handleFollow = async () => {
         try {
-            const response = await API.post('/follow/' + id)
+            await API.post('/follow/' + id)
             setIsFollow('true')
-            console.log(response)
+            // console.log(response)
         } catch (err) {
             console.log(err)
         }
@@ -93,7 +89,7 @@ export default function ProfilePeopleComponent() {
 
     const handleUnfollow = async () => {
         try {
-            const response = await API.post('/unfollow/' + id)
+            await API.post('/unfollow/' + id)
             setIsFollow('false')
         } catch (err) {
             console.log(err)
@@ -103,7 +99,7 @@ export default function ProfilePeopleComponent() {
     return (
         <>
             <div className='text-center p-4 sticky-top'>
-                <Link to='/Feed' className='d-flex justify-content-start'>
+                <Link to='/feed' className='d-flex justify-content-start'>
                     <img src={logo} alt="" className='img-fluid w-50' />
                 </Link>
 
@@ -111,9 +107,9 @@ export default function ProfilePeopleComponent() {
                 {dataUser.user.image ?
                     dataUser.user.image.slice(-5) == '/null' ?
                         <img src={account}
-                            className='mb-3 rounded-circle' style={{ width: 125, }} /> :
+                            className='mb-3 rounded-circle' style={{ width: 125, height: 125, objectFit: 'cover' }} /> :
                         <img src={dataUser.user.image}
-                            className='mb-3 rounded-circle' style={{ maxWidth: 125, maxHeight: 125, }} /> : 'no data'
+                            className='mb-3 rounded-circle' style={{ width: 125, height: 125, objectFit: 'cover' }} /> : 'no data'
                 }
 
                 <h4 className='name m-0'>{dataUser.user.fullName}</h4>

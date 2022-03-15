@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Col, Row, Button } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 
 import { UserContext } from '../../context/userContext'
-import { API, setAuthToken } from '../../config/api'
+import { API } from '../../config/api'
 
 //icons
 import edit from '../../assets/icons/edit.svg'
@@ -13,7 +13,6 @@ import logout from '../../assets/icons/logout.svg'
 import account from '../../assets/icons/account.svg'
 //image
 import logo from '../../assets/logo.svg'
-import lisa from '../../assets/lisa.png'
 
 // Init token on axios every time the app is refreshed here ...
 // if (localStorage.token) {
@@ -22,9 +21,9 @@ import lisa from '../../assets/lisa.png'
 
 function Profile() {
     const [dataUser, setDataUser] = useState({
-        following: '',
-        follower: '',
-        post: ''
+        following: '0',
+        follower: '0',
+        post: '0'
     })
     const [state, dispatch] = useContext(UserContext)
     const navigate = useNavigate()
@@ -53,6 +52,14 @@ function Profile() {
 
     useEffect(() => {
         count()
+
+        return () => {
+            setDataUser({
+                following: '',
+                follower: '',
+                post: ''
+            })
+        }
     }, [])
 
     const handleLogout = () => {
@@ -65,7 +72,7 @@ function Profile() {
     return (
         <>
             <div className='text-center p-4 sticky-top'>
-                <Link to='/Feed' className='d-flex justify-content-start'>
+                <Link to='/feed' className='d-flex justify-content-start'>
                     <img src={logo} alt="" className='img-fluid w-50' />
                 </Link>
                 <div className="d-flex justify-content-end">
@@ -77,9 +84,9 @@ function Profile() {
                 {state.user.image ?
                     state.user.image.slice(-5) == '/null' ?
                         <img src={account}
-                            className='mb-3 rounded-circle' style={{ width: 125, }} /> :
+                            className='mb-3 rounded-circle' style={{ width: 125, height: 125, objectFit: 'cover' }} /> :
                         <img src={state.user.image}
-                            className='mb-3 rounded-circle' style={{ maxWidth: 125, maxHeight: 125, }} /> : 'no data'
+                            className='mb-3 rounded-circle' style={{ width: 125, height: 125, objectFit: 'cover' }} /> : 'no data'
                 }
                 <h4 className='name m-0'>{state.user.fullName}</h4>
                 <h6 className="text-secondary">@{state.user.username}</h6>
