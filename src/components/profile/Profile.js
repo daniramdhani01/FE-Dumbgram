@@ -14,11 +14,6 @@ import account from '../../assets/icons/account.svg'
 //image
 import logo from '../../assets/logo.svg'
 
-// Init token on axios every time the app is refreshed here ...
-// if (localStorage.token) {
-//     setAuthToken(localStorage.token);
-// }
-
 function Profile() {
     const [dataUser, setDataUser] = useState({
         following: '0',
@@ -33,7 +28,7 @@ function Profile() {
             const config = {
                 // method: "GET",
                 headers: {
-                    Authorization: "Bearer " + localStorage.token,
+                    Authorization: "Bearer " + state.user.token,
                 },
             };
             const response = await API.get('/following/' + state.user.id, config)

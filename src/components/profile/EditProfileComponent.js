@@ -72,8 +72,8 @@ export default function EditProfileComponent() {
             // Create Configuration Content-type here ...
             // Content-type: multipart/form-data
             const config = {
-                header: {
-                    Authorization: "Bearer " + localStorage.token,
+                headers: {
+                    Authorization: `Bearer ${state.user.token}`,
                     'Content-type': 'multipart/form-data'
                 },
             }
@@ -92,42 +92,21 @@ export default function EditProfileComponent() {
             //insert data here
             const response = await API.patch('/user/' + id, formData, config);
 
-            // console.log(response.data.data);
-            const checkUser = async () => {
-                try {
-                    const config = {
-                        header: {
-                            Authorization: "Bearer " + localStorage.token,
-                        },
-                    }
-                    const response = await API.get('/check-auth', config);
-
-                    // If the token incorrect
-                    if (response.status === 'failed') {
-                        return dispatch({
-                            type: 'AUTH_ERROR',
-                        });
-                    }
-
-                    // Get user data
-                    let payload = response.data.data.user;
-
-                    // Get token from local storage
-                    payload.token = localStorage.token;
-
-                    // Send data to useContext
-                    dispatch({
-                        type: 'USER_SUCCESS',
-                        payload,
-                    });
-                } catch (error) {
-                    console.log(error);
-                }
-            };
 
             // Notification
+            console.log(response.data.data.user.data)
             if (response.data.status == 'success') {
-                checkUser();
+                let newData = state.user
+                newData = {
+                    ...newData,
+                    bio: response.data.data.user.data.bio,
+                    image: "https://res.cloudinary.com/dani-deploy/image/upload/v1647004104/DumbGram/profilePicture/" + response.data.data.user.data.image,
+
+                }
+                dispatch({
+                    type: "USER_UPDATE",
+                    payload: newData
+                })
                 navigate('/feed')
             } else {
                 const alert = (
@@ -165,8 +144,8 @@ export default function EditProfileComponent() {
                                     <img
                                         src={preview}
                                         style={{
-                                            maxWidth: '150px',
-                                            maxHeight: '150px',
+                                            width: '150px',
+                                            height: '150px',
                                             objectFit: 'cover',
                                         }}
                                         className='rounded-circle'

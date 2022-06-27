@@ -62,7 +62,7 @@ function Login(props) {
       } else {
         const alert = (
           <Alert variant="danger" className="py-1 text-center">
-            Failed! {response.data.message} disini
+            Failed! {response.data.message}
           </Alert>
         );
         setMessage(alert);

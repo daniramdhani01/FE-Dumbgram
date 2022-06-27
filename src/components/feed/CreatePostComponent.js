@@ -38,7 +38,7 @@ export default function CreatePostComponen() {
             // Content-type: multipart/form-data
             const config = {
                 header: {
-                    Authorization: "Bearer " + localStorage.token,
+                    Authorization: "Bearer " + state.user.token,
                     'Content-type': 'multipart/form-data'
                 },
             }
@@ -55,41 +55,41 @@ export default function CreatePostComponen() {
             //insert data here
             const response = await API.post('/feed', formData, config);
 
-            const checkUser = async () => {
-                try {
-                    const config = {
-                        header: {
-                            Authorization: "Bearer " + localStorage.token,
-                        },
-                    }
-                    const response = await API.get('/check-auth', config);
+            // const checkUser = async () => {
+            //     try {
+            //         const config = {
+            //             header: {
+            //                 Authorization: "Bearer " + localStorage.token,
+            //             },
+            //         }
+            //         const response = await API.get('/check-auth', config);
 
-                    // If the token incorrect
-                    if (response.status === 'failed') {
-                        return dispatch({
-                            type: 'AUTH_ERROR',
-                        });
-                    }
+            //         // If the token incorrect
+            //         if (response.status === 'failed') {
+            //             return dispatch({
+            //                 type: 'AUTH_ERROR',
+            //             });
+            //         }
 
-                    // Get user data
-                    let payload = response.data.data.user;
+            //         // Get user data
+            //         let payload = response.data.data.user;
 
-                    // Get token from local storage
-                    payload.token = localStorage.token;
+            //         // Get token from local storage
+            //         payload.token = localStorage.token;
 
-                    // Send data to useContext
-                    dispatch({
-                        type: 'USER_SUCCESS',
-                        payload,
-                    });
-                } catch (error) {
-                    console.log(error);
-                }
-            };
+            //         // Send data to useContext
+            //         dispatch({
+            //             type: 'USER_SUCCESS',
+            //             payload,
+            //         });
+            //     } catch (error) {
+            //         console.log(error);
+            //     }
+            // };
 
             // Notification
             if (response.data.status == 'success') {
-                checkUser();
+                // checkUser();
                 navigate('/feed')
             } else {
                 const alert = (

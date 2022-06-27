@@ -110,9 +110,9 @@ export default function FeedDetail() {
                                 <div className="d-flex align-items-center mb-2 flex-wrap" >
                                     {item.user.image ?
                                         item.user.image.slice(-5) == '/null' ?
-                                            <img src={account} className='userIcons rounded-circle' style={{ width: 32 }} />
+                                            <img src={account} className='userIcons rounded-circle' style={{ width: 32, height: 32, objectFit: 'cover' }} />
                                             :
-                                            <img src={item.user.image} className='userIcons rounded-circle' style={{ width: 32 }} />
+                                            <img src={item.user.image} className='userIcons rounded-circle' style={{ width: 32, height: 32, objectFit: 'cover' }} />
                                         :
                                         'no data'
                                     }

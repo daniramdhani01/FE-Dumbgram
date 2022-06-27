@@ -12,6 +12,12 @@ const reducer = (state, action) => {
 
     switch (type) {
         // case "USER_SUCCESS" here ...
+        case 'USER_UPDATE':
+            return {
+                isLogin: true,
+                user: payload
+            }
+
         case 'USER_SUCCESS':
         case 'LOGIN_SUCCESS':
             // Set item token to localStorage here ...

@@ -2,6 +2,7 @@ import Profile from "../components/profile/Profile"
 import EditProfileComponent from "../components/profile/EditProfileComponent"
 
 export default function Feed() {
+
     return (
         <div className="d-flex">
             <div className="col-3">
